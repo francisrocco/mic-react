@@ -12,6 +12,8 @@ import rootReducer from './reducers';
 
 import { fetchArticles } from './actions'
 
+import './index.css';
+
 const store = createStore(rootReducer, applyMiddleware(ReduxPromise));
 
 store.dispatch( fetchArticles() );
