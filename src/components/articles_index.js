@@ -8,21 +8,21 @@ function ArticlesIndex (props) {
     <div className="table-responsive">
       <table className="table table-striped table-bordered">
         <thead>
-          <tr className="table-header">
-            <th>UNPUBLISHED ARTICLES ({props.articles.length})</th>
-            <th>AUTHOR</th>
-            <th>WORDS</th>
-            <th>SUBMITTED</th>
+          <tr className="table-header vert-align-mid-head">
+            <th><br/>UNPUBLISHED ARTICLES ({props.articles.length})<br/><br/></th>
+            <th>AUTHOR<br/><br/></th>
+            <th>WORDS<br/><br/></th>
+            <th>SUBMITTED<br/><br/></th>
           </tr>
         </thead>
         <tbody>
 
           {props.articles.map((article) =>
             <tr>
-              <td>{article.title}</td>
-              <td>{article.author.name}</td>
-              <td className="text-center">{article.word_count}</td>
-              <td className="text-center">YAS</td>
+              <td className="vert-align-top"><img src={article.avatar}/> {article.title}</td>
+              <td className="vert-align-mid">{article.author.name}</td>
+              <td className="text-center vert-align-mid">{article.word_count}</td>
+              <td className="text-center vert-align-mid">YAS</td>
             </tr>
           )}
 

@@ -14,9 +14,26 @@ body {
 }
 
 /*#B50B2B --- bottom color*/
-/*#882D39 --- possibl emiddle color*/
+
 .table-bordered th{
-    border-color: #802B37 !important;
+  border-color: #802B37 !important;
+}
+
+img {
+  height: 50px;
+  width: 50px;
+}
+
+.table tbody>tr>td.vert-align-mid {
+  vertical-align: middle;
+}
+
+.table thead>tr.vert-align-mid-head {
+  vertical-align: middle;
+}
+
+.table tbody>tr>td.vert-align-top {
+  vertical-align: text-top;
 }
 
 .thead {
