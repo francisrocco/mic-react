@@ -19,7 +19,14 @@ function ArticlesIndex (props) {
 
           {props.articles.map((article) =>
             <tr>
-              <td className="vert-align-top"><img src={article.avatar}/> {article.title}</td>
+              <td className="vert-align-top">
+                <img src={article.avatar}/> {article.title}
+                  { article.bootcamp ?
+                    <div className="text-right bootcamp">
+                      Bootcamp
+                    </div>
+                    : null }
+              </td>
               <td className="vert-align-mid">{article.author.name}</td>
               <td className="text-center vert-align-mid">{article.word_count}</td>
               <td className="text-center vert-align-mid">{article.submitted}</td>
