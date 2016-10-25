@@ -6,9 +6,30 @@ import moment from 'moment'
 class ArticlesIndex extends React.Component {
   constructor(props) {
     super(props)
+    this.state = { limit: 10, showMore: true }
+    this.showMore = this.showMore.bind(this)
+    this.renderButton = this.renderButton.bind(this)
+  }
+
+  showMore() {
+    debugger
+    this.setState({
+      limit: this.state.limit + 10,
+      showMore: this.state.limit + 10 < this.props.articles.length
+    });
+  }
+
+  renderButton() {
+    if (!this.state.showMore) return null;
+    return (
+      <button className="btn btn-default btn-block" onClick={this.showMore}>Show More</button>
+    );
   }
 
   render() {
+
+    var articles = this.props.articles.slice(0,this.state.limit);
+
     return (
       <div>
         <div className="table-responsive">
@@ -23,7 +44,7 @@ class ArticlesIndex extends React.Component {
             </thead>
             <tbody>
 
-              {this.props.articles.map((article) =>
+              {articles.map((article) =>
                 <tr>
                   <td className="article-cell">
                     <div>
@@ -42,7 +63,8 @@ class ArticlesIndex extends React.Component {
           </table>
         </div>
 
-        <Link to="/articles/new" className="btn btn-default btn-block">Add An Article</Link><br/>
+        { this.renderButton() }
+
       </div>
     )
   }
