@@ -60,3 +60,12 @@ body {
   float: left;
   margin-right: 5px;
 }
+
+.article-title {
+  color: #115379;
+  font-weight: bold;
+}
+
+.author-name {
+  color: #115379;
+}

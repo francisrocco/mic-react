@@ -12,3 +12,20 @@ export function fetchArticles(){
     payload: articles
   }
 }
+
+export function addArticle(newArticleFromForm) {
+  const newArticleFromApi = fetch(`${databaseUrl}articles`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({article: newArticleFromForm})
+  }).then(response => {
+    return response.json()
+  }).then(newArticlePayload => {
+    return newArticlePayload
+  })
+
+  return {type: 'ADD_ARTICLE', payload: newArticleFromApi}
+}
