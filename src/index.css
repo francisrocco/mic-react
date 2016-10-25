@@ -61,7 +61,7 @@ body {
   margin-right: 5px;
 }
 
-.article-title {
+a {
   color: #115379;
   font-weight: bold;
 }
