@@ -33,21 +33,25 @@ class ArticlesIndex extends React.Component {
 
   sortWordsLow() {
     this.props.articles.sort(sortBy('words', false, parseInt))
+    sessionStorage.setItem('sort', "sortWordsLow")
     this.forceUpdate()
   }
 
   sortSubmittedLow() {
     this.props.articles.sort(sortBy('publish_at', false))
+    sessionStorage.setItem('sort', "sortSubmittedLow")
     this.forceUpdate()
   }
 
   sortWordsHigh() {
     this.props.articles.sort(sortBy('words', true, parseInt))
+    sessionStorage.setItem('sort', "sortWordsHigh")
     this.forceUpdate()
   }
 
   sortSubmittedHigh() {
     this.props.articles.sort(sortBy('publish_at', true))
+    sessionStorage.setItem('sort', "sortSubmittedHigh")
     this.forceUpdate()
   }
 
