@@ -33,25 +33,29 @@ class ArticlesIndex extends React.Component {
 
   sortWordsLow() {
     this.props.articles.sort(sortBy('words', false, parseInt))
-    sessionStorage.setItem('sort', "sortWordsLow")
+    sessionStorage.setItem('column', 'words')
+    sessionStorage.setItem('reverse', '')
     this.forceUpdate()
   }
 
   sortSubmittedLow() {
     this.props.articles.sort(sortBy('publish_at', false))
-    sessionStorage.setItem('sort', "sortSubmittedLow")
+    sessionStorage.setItem('column', 'publish_at')
+    sessionStorage.setItem('reverse', '')
     this.forceUpdate()
   }
 
   sortWordsHigh() {
     this.props.articles.sort(sortBy('words', true, parseInt))
-    sessionStorage.setItem('sort', "sortWordsHigh")
+    sessionStorage.setItem('column', 'words')
+    sessionStorage.setItem('reverse', 'true')
     this.forceUpdate()
   }
 
   sortSubmittedHigh() {
     this.props.articles.sort(sortBy('publish_at', true))
-    sessionStorage.setItem('sort', "sortSubmittedHigh")
+    sessionStorage.setItem('column', 'publish_at')
+    sessionStorage.setItem('reverse', 'true')
     this.forceUpdate()
   }
 
@@ -114,8 +118,11 @@ var sortBy = function(field, reverse, primer){
 }
 
 function mapStateToProps(state){
+  var sortColumn = sessionStorage.getItem('column')
+  var reversed = !!sessionStorage.getItem('reverse')
+  var int = sessionStorage.getItem('column') == 'words' ? parseInt : null
   return {
-    articles: state.articles
+    articles: state.articles.sort(sortBy(sortColumn, reversed, int))
   }
 }
 
