@@ -5,3 +5,12 @@ export function fetchArticles(){
     payload: articles
   }
 }
+
+export function addMoreArticles(){
+  const moreArticles = require('../../data/more-articles.json')
+   
+  return {
+    type: 'ADD_ARTICLES',
+    payload: moreArticles
+  }
+}

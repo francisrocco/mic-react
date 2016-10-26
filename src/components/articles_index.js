@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { bindActionCreators } from 'redux';
 import moment from 'moment'
 import {Icon} from 'react-fa'
+import * as actions from '../actions'
 
 
 class ArticlesIndex extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { limit: 10, showMore: true, sort: true }
+    this.state = { limit: 10, showMore: true, sort: true, fetchMore: false }
     this.showMore = this.showMore.bind(this)
     this.renderButton = this.renderButton.bind(this)
     this.sortWordsLow = this.sortWordsLow.bind(this)
@@ -18,6 +20,12 @@ class ArticlesIndex extends React.Component {
   }
 
   showMore() {
+    if (this.state.limit >= this.props.articles.length && !this.state.fetchMore) {
+      this.props.actions.addMoreArticles()
+      this.setState({
+        fetchMore: true
+      })
+    }
     this.setState({
       limit: this.state.limit + 10,
       showMore: (this.state.limit < this.props.articles.length)
@@ -25,7 +33,7 @@ class ArticlesIndex extends React.Component {
   }
 
   renderButton() {
-    if (!this.state.showMore) return null;
+    if (!this.state.showMore && (this.state.fetchMore && (this.state.limit >= this.props.articles.length))) return null;
     return (
       <button className="btn btn-default btn-block" onClick={this.showMore}>Load More</button>
     );
@@ -126,5 +134,9 @@ function mapStateToProps(state){
   }
 }
 
-const componentCreator = connect(mapStateToProps)
+function mapDispatchToProps(dispatch) {
+  return {actions: bindActionCreators(actions, dispatch)}
+}
+
+const componentCreator = connect(mapStateToProps, mapDispatchToProps)
 export default componentCreator(ArticlesIndex);
